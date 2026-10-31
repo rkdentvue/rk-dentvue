@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#fafaf9">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231a1a1a'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='sans-serif' font-size='14' font-weight='700' fill='%23a07828'%3ERK%3C/text%3E%3C/svg%3E">
@@ -10,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css?v=3">
 </head>
 <body>
 <nav class="nav" id="nav">
@@ -18,7 +21,7 @@
     <a class="brand" href="#top">
       <img src="assets/logo.jpg" alt="RK Dentvue logo" class="brand-logo">
       <div>
-        <div class="brand-name">RK Dentvue</div>
+        <div class="brand-name"><span class="rk">RK</span> <span class="dv">Dentvue</span></div>
         <div class="brand-sub">Advanced Dental Radiology</div>
       </div>
     </a>
@@ -33,7 +36,11 @@
       <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
       </button>
-      <a href="tel:+919620009222" class="btn btn-primary btn-sm">Call Now</a>
+      <button class="nav-icon feedback-trigger" aria-label="Share feedback" title="Feedback">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        <span>Feedback</span>
+      </button>
+      <a href="tel:+916362766366" class="btn btn-primary btn-sm">Call Now</a>
       <button class="menu-btn" id="menuBtn" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -53,8 +60,8 @@
       <div class="img-carousel">
         <div class="track">
           <div class="slide">
-            <img src="assets/cs9600_award.jpg" alt="Carestream CS9600 CBCT">
-            <span class="caption">Carestream CS9600 CBCT</span>
+            <img src="assets/whatsapp_clinic.jpg" alt="RK Dentvue imaging centre">
+            <span class="caption">Modern imaging centre</span>
           </div>
           <div class="slide">
             <img src="assets/cloud_imaging.jpg" alt="Swissmeda Cloud Imaging">
@@ -68,17 +75,12 @@
             <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1200&q=80" alt="Dental equipment">
             <span class="caption">Precision equipment</span>
           </div>
-          <div class="slide">
-            <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=80" alt="Dental clinic room">
-            <span class="caption">Patient-ready rooms</span>
-          </div>
         </div>
         <div class="dots">
           <button aria-label="Slide 1"></button>
           <button aria-label="Slide 2"></button>
           <button aria-label="Slide 3"></button>
           <button aria-label="Slide 4"></button>
-          <button aria-label="Slide 5"></button>
       </div>
     </div>
   </div>
@@ -93,7 +95,7 @@
     </div>
   </div>
 </section>
-<section class="section" style="background:var(--bg-2)" id="services">
+<section class="section" id="services">
   <div class="container">
     <span class="eyebrow">Services</span>
     <div class="section-head">
@@ -160,11 +162,11 @@
     </div>
   </div>
 </section>
-<section class="section" style="background:var(--bg-2)" id="why">
+<section class="section" id="why">
   <div class="container">
     <span class="eyebrow">Why Us</span>
     <div class="section-head">
-      <h2>Built for clinicians. Trusted by patients.</h2>
+      <h2 style="font-size:2.8rem !important;font-weight:800 !important">Built for clinicians. Trusted by patients.</h2>
     </div>
     <div class="why-grid">
       <div class="why-card">
@@ -213,7 +215,7 @@
         <span class="area">Hindupur · Andhra Pradesh</span>
         <h3>RK Dental Diagnostics</h3>
         <p>Penukonda Rd, Near Raga Restaurant,<br>Hindupur, A.P. - 515201</p>
-        <div class="chips"><span>OPG</span><span>CBCT</span></div>
+        <div class="chips"><span>OPG</span><span>TMJ</span><span>Sinus view</span><span>TMJ 3D</span><span>CBCT</span></div>
         <a href="https://www.google.com/maps/place/RK+DENTAL+DIAGNOSTICS/@13.8373229,77.4943299,17z/data=!3m1!5s0x3bb1a3bcbdb1ceaf:0xa7b1ae4fb9604230!4m10!1m2!2m1!1sFirst+floor,+Door+no+26,+RK+DENTAL+DIAGNOSTICS,+Balaji+Nagar,+CMR+enclave,+4-864-18%2F1,+near+Raga+Restaurant,+behind+Eshwar+TVS+Showroom,+Mukkidipeta,+Hindupuram,+Andhra+Pradesh+515201!3m6!1s0x3bb1a30064a11f7d:0x82b431c0fbac6845!8m2!3d13.8373198!4d77.4969357!15sCrcBRmlyc3QgZmxvb3IsIERvb3Igbm8gMjYsIFJLIERFTlRBTCBESUFHTk9TVElDUywgQmFsYWppIE5hZ2FyLCBDTVIgZW5jbGF2ZSwgNC04NjQtMTgvMSwgbmVhciBSYWdhIFJlc3RhdXJhbnQsIGJlaGluZCBFc2h3YXIgVFZTIFNob3dyb29tLCBNdWtraWRpcGV0YSwgSGluZHVwdXJhbSwgQW5kaHJhIFByYWRlc2ggNTE1MjAxIgOIAQFasAEirQFmaXJzdCBmbG9vciBkb29yIG5vIDI2IHJrIGRlbnRhbCBkaWFnbm9zdGljcyBiYWxhamkgbmFnYXIgY21yIGVuY2xhdmUgNCA4NjQgMTggMSBuZWFyIHJhZ2EgcmVzdGF1cmFudCBiZWhpbmQgZXNod2FyIHR2cyBzaG93cm9vbSBtdWtraWRpcGV0YSBoaW5kdXB1cmFtIGFuZGhyYSBwcmFkZXNoIDUxNTIwMZIBEGRlbnRhbF9yYWRpb2xvZ3maAURDaTlEUVVsUlFVTnZaRU5vZEhsalJqbHZUMnh2ZUZacVVuWlNNalExWkVaYWVXSjZUa3RQUkdodFZsWkNWV1F6WXhBQuABAPoBBAh9ECo!16s%2Fg%2F11yyqjggyn?entry=ttu&g_ep=EgoyMDI2MTAyOC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" class="btn btn-dark btn-sm" style="width:100%">Open in Google Maps</a>
       </div>
       <div class="branch">
@@ -221,7 +223,7 @@
         <span class="area">Dharmavaram · Andhra Pradesh</span>
         <h3>RK Dental Diagnostics</h3>
         <p>Near Balija Kalyana Mantapam,<br>Dharmavaram, A.P. - 515671</p>
-        <div class="chips"><span>OPG</span></div>
+        <div class="chips"><span>OPG</span><span>TMJ</span><span>Sinus view</span></div>
         <a href="https://www.google.com/maps/place/RK+Dental+Diagnostics/@14.4196776,77.7215804,17z/data=!3m1!4b1!4m6!3m5!1s0x3bb1433397ad4bb9:0xcddf1558645788e9!8m2!3d14.4196776!4d77.7241553!16s%2Fg%2F11nq3pwlcd?entry=ttu&g_ep=EgoyMDI2MTAyOC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" class="btn btn-dark btn-sm" style="width:100%">Open in Google Maps</a>
       </div>
       <div class="branch">
@@ -229,29 +231,107 @@
         <span class="area">Kothanur · Bengaluru, Karnataka</span>
         <h3>RK Dentvue</h3>
         <p>R.K. Nagar, K. Narayanapura Rd,<br>Kothanur, Bengaluru - 560077</p>
-        <div class="chips"><span>OPG</span><span>CBCT</span><span>Cephalometry</span><span>Complete Dental Radiology</span></div>
+        <div class="chips"><span>OPG</span><span>TMJ</span><span>PNS/Sinus view</span><span>PA cephalogram</span><span>Lateral cephalogram</span><span>Hand wrist</span><span>CBCT</span><span>TMJ 3D</span></div>
         <a href="https://www.google.com/maps/search/?api=1&query=RK%20Dentvue%2C%20K594%2C%20R.K.%20Nagar%2C%20K%20Narayanapura%20Main%20Rd%2C%20near%20BDS%20Nagar%2C%20Kothanur%20Post%2C%20Kothanur%2C%20Bengaluru%2C%20Karnataka%20560077" target="_blank" rel="noopener" class="btn btn-dark btn-sm" style="width:100%">Open in Google Maps</a>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section" style="background:var(--bg-2)" id="contact">
+<section class="section feedback-modal" id="feedback">
+  <div class="container">
+    <button class="feedback-close" id="feedbackClose" aria-label="Close feedback">&times;</button>
+    <span class="eyebrow">Feedback</span>
+    <div class="section-head">
+      <h2>We value your experience.</h2>
+      <p class="lead">Tell us how we did — your feedback helps us serve you better.</p>
+    </div>
+    <div style="max-width:100%">
+      <span class="eyebrow">Rate your visit</span>
+      <h3 style="margin-bottom:6px">Share a review</h3>
+      <form class="form-grid" id="feedback-form" onsubmit="handleFeedback(event)">
+          <input type="hidden" name="access_key" id="fb-access-key" value="c7c09ef7-1e8b-4840-bb1b-9752760be50e">
+          <input type="hidden" name="subject" value="New Feedback - RK Dentvue">
+          <input type="hidden" name="from_name" value="RK Dentvue Website">
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+          <input type="checkbox" name="botcheck" style="display:none">
+          <div class="field">
+            <label>Your rating</label>
+            <div class="star-rating" id="starRating" role="radiogroup" aria-label="Rating">
+              <button type="button" class="star" data-value="1" aria-label="1 star">★</button>
+              <button type="button" class="star" data-value="2" aria-label="2 stars">★</button>
+              <button type="button" class="star" data-value="3" aria-label="3 stars">★</button>
+              <button type="button" class="star" data-value="4" aria-label="4 stars">★</button>
+              <button type="button" class="star" data-value="5" aria-label="5 stars">★</button>
+            </div>
+            <input type="hidden" id="fb-rating" value="0">
+          </div>
+          <div class="field">
+            <label>What stood out? <span class="muted" style="font-weight:400">(select any)</span></label>
+            <div class="yn-grid">
+              <div class="yn-row">
+                <span>Were our staff friendly and helpful?</span>
+                <div class="yn-options">
+                  <label><input type="radio" name="q1" value="Yes" required> Yes</label>
+                  <label><input type="radio" name="q1" value="No"> No</label>
+                </div>
+              </div>
+              <div class="yn-row">
+                <span>Was the centre clean and comfortable?</span>
+                <div class="yn-options">
+                  <label><input type="radio" name="q2" value="Yes" required> Yes</label>
+                  <label><input type="radio" name="q2" value="No"> No</label>
+                </div>
+              </div>
+              <div class="yn-row">
+                <span>Was the scan process quick and smooth?</span>
+                <div class="yn-options">
+                  <label><input type="radio" name="q3" value="Yes" required> Yes</label>
+                  <label><input type="radio" name="q3" value="No"> No</label>
+                </div>
+              </div>
+              <div class="yn-row">
+                <span>Would you recommend us to others?</span>
+                <div class="yn-options">
+                  <label><input type="radio" name="q4" value="Yes" required> Yes</label>
+                  <label><input type="radio" name="q4" value="No"> No</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label for="fb-msg">Message</label>
+            <textarea class="input" id="fb-msg" placeholder="Share more about your experience…" rows="4"></textarea>
+          </div>
+          <div class="field">
+            <label for="fb-name">Your name</label>
+            <input class="input" id="fb-name" type="text" placeholder="Your name">
+          </div>
+          <button type="submit" id="fb-submit" class="btn btn-primary" style="width:100%">Submit feedback</button>
+          <p id="fbMsg" style="margin-top:12px;color:var(--success);font-weight:600;display:none">Thank you for your feedback!</p>
+        </form>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
   <div class="container">
     <span class="eyebrow">Contact</span>
     <div class="section-head">
       <h2>Let's get you scanned.</h2>
+
+
       <p class="lead">Reach out to book an appointment or ask about our imaging services.</p>
     </div>
     <div class="contact-grid">
       <div style="display:grid;gap:12px">
         <div class="info-card">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          <div><div class="k">Director</div><div class="v">P. Ravindra Reddy</div><div class="muted" style="font-size:.85rem">RK Dentvue · Advanced Dental Radiology</div></div>
+          <div><div class="k" style="color:#1a1a1a">Director</div><div class="v" style="color:#1a1a1a">P. Ravindra Reddy</div><div class="muted" style="font-size:.85rem">RK Dentvue · Advanced Dental Radiology</div></div>
         </div>
         <div class="info-card">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          <div><div class="k">Phone</div><a href="tel:+916362766366" class="v">+91 63627 66366</a></div>
+          <div><div class="k">Phone</div><a href="tel:+919620009222" class="v">+91 96200 09222</a></div>
         </div>
         <div class="info-card">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -261,7 +341,7 @@
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           <div><div class="k">Open</div><div class="v">Monday to Saturday, 9 AM to 9 PM</div></div>
         </div>
-        <a href="tel:+919620009222" class="btn btn-primary" style="width:100%">Call +91 96200 09222</a>
+        <a href="tel:+916362766366" class="btn btn-primary" style="width:100%">Call +91 63627 66366</a>
       </div>
       <div class="card">
         <h3 style="margin-bottom:14px">Send an enquiry</h3>
@@ -274,7 +354,7 @@
           <input type="checkbox" name="botcheck" style="display:none">
           <input type="text" name="name" placeholder="Your name" required>
           <input type="tel" name="phone" placeholder="Phone number" required>
-          <input type="email" name="email" placeholder="Email (optional)">
+          <input type="email" name="email" placeholder="Email">
           <select name="centre">
             <option value="">Preferred centre</option>
             <option>Hindupur</option>
@@ -296,11 +376,11 @@
         <div class="footer-brand">
           <img src="assets/logo.jpg" alt="">
           <div>
-            <div class="name">RK Dentvue</div>
+            <div class="name"><span class="rk">RK</span> <span class="dv">Dentvue</span></div>
             <div class="sub">Advanced Dental Radiology</div>
           </div>
         </div>
-        <p style="font-size:.9rem;max-width:320px">Precision beyond the Smile. Diagnostic imaging for confident treatment planning.</p>
+        <p style="font-size:.9rem;max-width:320px">Precision beyond the Smile.<br>Diagnostic imaging for confident treatment planning.</p>
       </div>
       <div>
         <h4>Quick Links</h4>
@@ -324,7 +404,7 @@
     <div class="footer-bottom">© 2025 RK Dentvue. All rights reserved. · Precision beyond the Smile</div>
   </div>
 </footer>
-<a class="whatsapp-link" href="https://wa.me/919620009222?text=Hello%20RK%20Dentvue%2C%20I%27d%20like%20to%20make%20an%20enquiry." aria-label="Chat with RK Dentvue on WhatsApp">
+<a class="whatsapp-link" href="https://wa.me/916362766366?text=Hello%20RK%20Dentvue%2C%20I%27d%20like%20to%20make%20an%20enquiry." aria-label="Chat with RK Dentvue on WhatsApp">
     <span class="whatsapp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg></span>
     <span class="whatsapp-text">WhatsApp Us</span>
   </a>

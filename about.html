@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css?v=3">
 </head>
 <body>
 <nav class="nav" id="nav">
@@ -18,7 +18,7 @@
     <a class="brand" href="index.html">
       <img src="assets/logo.jpg" alt="RK Dentvue logo" class="brand-logo">
       <div>
-        <div class="brand-name">RK Dentvue</div>
+        <div class="brand-name"><span class="rk">RK</span> <span class="dv">Dentvue</span></div>
         <div class="brand-sub">Advanced Dental Radiology</div>
       </div>
     </a>
@@ -34,7 +34,11 @@
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
       </button>
       </a>
-      <a href="tel:+919620009222" class="btn btn-primary btn-sm">Call Now</a>
+      <button class="nav-icon feedback-trigger" aria-label="Share feedback" title="Feedback">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        <span>Feedback</span>
+      </button>
+      <a href="tel:+916362766366" class="btn btn-primary btn-sm">Call Now</a>
       <button class="menu-btn" id="menuBtn" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -62,12 +66,12 @@
     <div class="about-card" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center">
       <img src="assets/logo.jpg" alt="RK Dentvue logo" style="width:120px;height:120px;border-radius:50%;object-fit:cover;margin-bottom:16px;box-shadow:var(--shadow)">
       <h3 style="margin-bottom:8px">Led by</h3>
-      <p class="muted" style="margin-bottom:12px"><strong>P. Ravindra Reddy</strong> — Director, RK Dentvue, with a focus on precision diagnostics, patient safety and close collaboration with referring dentists.</p>
+      <p class="muted" style="margin-bottom:12px"><strong style="color:#1a1a1a">P. Ravindra Reddy</strong> — Director, RK Dentvue, with a focus on precision diagnostics, patient safety and close collaboration with referring dentists.</p>
       <p class="muted" style="margin-bottom:0">We work closely with referring dentists and share digital reports promptly.</p>
     </div>
   </div>
 </section>
-<section class="section" style="background:var(--bg-2)">
+<section class="section">
   <div class="container">
     <span class="eyebrow">Our promise</span>
     <div class="trust-strip">
@@ -76,6 +80,7 @@
       <div class="trust-item"><strong>3 centres</strong><span>Across 2 states</span></div>
       <div class="trust-item"><strong>Mon–Sat</strong><span>9 AM to 9 PM</span></div>
     </div>
+    <p style="margin-top:24px;text-align:center;font-family:var(--f-display);font-weight:700;letter-spacing:.08em;color:#1a1a1a">CLEAR VISION. ACCURATE DIAGNOSIS. BETTER CARE.</p>
   </div>
 </section>
 <footer class="footer">
@@ -85,11 +90,11 @@
         <div class="footer-brand">
           <img src="assets/logo.jpg" alt="">
           <div>
-            <div class="name">RK Dentvue</div>
+            <div class="name"><span class="rk">RK</span> <span class="dv">Dentvue</span></div>
             <div class="sub">Advanced Dental Radiology</div>
           </div>
         </div>
-        <p style="font-size:.9rem;max-width:320px">Precision beyond the Smile. Diagnostic imaging for confident treatment planning.</p>
+        <p style="font-size:.9rem;max-width:320px">Precision beyond the Smile.<br>Diagnostic imaging for confident treatment planning.</p>
       </div>
       <div>
         <h4>Quick Links</h4>
