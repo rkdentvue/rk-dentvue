@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#fafaf9">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231a1a1a'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='sans-serif' font-size='14' font-weight='700' fill='%23a07828'%3ERK%3C/text%3E%3C/svg%3E">
+<title>Appointment — RK Dentvue</title>
+<meta name="description" content="Book an appointment at RK Dentvue Centres — OPG, CBCT, Cephalometry across Hindupur, Dharmavaram and Bengaluru.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="nav" id="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="index.html">
+      <img src="assets/logo.jpg" alt="RK Dentvue logo" class="brand-logo">
+      <div>
+        <div class="brand-name">RK Dentvue</div>
+        <div class="brand-sub">Advanced Dental Radiology</div>
+      </div>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="about.html">About</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#branches">Centres</a>
+      <a href="appointment.html">Appointment</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <a href="tel:+919620009222" class="btn btn-primary btn-sm">Call Now</a>
+      <button class="menu-btn" id="menuBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<section class="appt-hero">
+  <div class="container">
+    <span class="eyebrow">Appointment</span>
+    <h1 style="max-width:760px;font-size:clamp(1.8rem,4vw,3rem)">Reserve your scan slot<br><span class="accent">in under a minute.</span></h1>
+    <p class="hero-desc" style="max-width:620px;margin-top:20px">Pick your centre, choose a time, and we'll confirm via WhatsApp. Most scans take 5–15 minutes — same-day digital reports available.</p>
+    <div class="hero-cta" style="margin-top:28px">
+      <a href="#book" class="btn btn-primary">Book Now</a>
+      <a href="tel:+919620009222" class="btn btn-outline">Call +91 96200 09222</a>
+    </div>
+  </div>
+</section>
+<section class="section" id="book">
+  <div class="container">
+    <div class="appt-grid">
+      <div class="appt-card">
+        <span class="eyebrow">Request a booking</span>
+        <h3 style="margin-bottom:6px">Tell us a little about you</h3>
+        
+        <form class="form-grid" onsubmit="handleAppointment(event)">
+          <div class="field">
+            <label for="appt-name">Full name <span class="req">*</span></label>
+            <input class="input" id="appt-name" type="text" placeholder="Your name" required>
+          </div>
+          <div class="field">
+            <label for="appt-phone">Phone number <span class="req">*</span></label>
+            <input class="input" id="appt-phone" type="tel" placeholder="+91 9XXXXXXXXX" required>
+          </div>
+          <div class="field">
+            <label>Preferred centre <span class="req">*</span></label>
+            <div class="centre-grid">
+              <label class="centre-option"><input type="radio" name="centre" value="Hindupur" required><strong>Hindupur</strong><span>OPG · CBCT</span></label>
+              <label class="centre-option"><input type="radio" name="centre" value="Dharmavaram"><strong>Dharmavaram</strong><span>OPG</span></label>
+              <label class="centre-option"><input type="radio" name="centre" value="Bengaluru (Kothanur)"><strong>Bengaluru</strong><span>Kothanur · Full suite</span></label>
+            </div>
+          </div>
+          <div class="field">
+            <label for="appt-scan">Scan type</label>
+            <select class="input" id="appt-scan">
+              <option>OPG (Panoramic)</option>
+              <option>CBCT (3D Imaging)</option>
+              <option>Cephalometry</option>
+              <option>Not sure — advise me</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="appt-msg">Message (optional)</label>
+            <textarea class="input" id="appt-msg" placeholder="Preferred date/time, referral notes, or any questions." rows="4"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%">Book via WhatsApp</button>
+          <p id="apptMsg" style="margin-top:12px;color:var(--success);font-weight:600;display:none">Thanks! We'll confirm your booking shortly.</p>
+        </form>
+      </div>
+      <div>
+        <div class="appt-card" style="margin-top:0">
+          <span class="eyebrow">Prefer to call?</span>
+          <h3 style="margin-bottom:6px">Talk to our team</h3>
+          <p class="muted" style="font-size:.9rem;margin-bottom:16px">We'll book your slot and answer any questions.</p>
+          <a href="tel:+919620009222" class="btn btn-primary" style="width:100%">Call +91 96200 09222</a>
+          <a href="mailto:rkdentvue@gmail.com" class="btn btn-outline" style="width:100%;margin-top:10px">Email us</a>
+        </div>
+      </div>
+    </div>
+    </div>
+</section>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <img src="assets/logo.jpg" alt="">
+          <div>
+            <div class="name">RK Dentvue</div>
+            <div class="sub">Advanced Dental Radiology</div>
+          </div>
+        </div>
+        <p style="font-size:.9rem;max-width:320px">Precision beyond the Smile. Diagnostic imaging for confident treatment planning.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <div style="display:grid;gap:8px;font-size:.9rem">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="index.html#services">Services</a>
+          <a href="index.html#branches">Centres</a>
+          <a href="appointment.html">Appointment</a>
+          <a href="index.html#contact">Contact</a>
+        </div>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <div style="display:grid;gap:8px;font-size:.9rem">
+          <a href="tel:+916362766366">+91 63627 66366</a>
+          <a href="mailto:rkdentvue@gmail.com">rkdentvue@gmail.com</a>
+          <span>Mon – Sat, 9 AM – 9 PM</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2025 RK Dentvue. All rights reserved. · Precision beyond the Smile</div>
+  </div>
+</footer>
+<a class="whatsapp-link" href="https://wa.me/919620009222?text=Hello%20RK%20Dentvue%2C%20I%27d%20like%20to%20make%20an%20enquiry." aria-label="Chat with RK Dentvue on WhatsApp">
+  <span class="whatsapp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg></span>
+  <span class="whatsapp-text">WhatsApp Us</span>
+</a>
+<script src="js/main.js"></script>
+</body>
+</html>
