@@ -366,7 +366,7 @@ p{margin:0 0 16px}
 .yn-options input{accent-color:var(--primary)}
 
 .nav-icon{display:inline-flex;align-items:center;gap:6px;padding:0 12px;height:40px;border-radius:10px;color:#ffbc10 !important;border:1.5px solid #ffbc10;transition:background .2s,color .2s,border-color .2s;font-size:.85rem;font-weight:600;background:var(--card)}
-.nav-icon:hover{background:#ffbc10;border-color:#ffbc10;color:#1a1a1a}
+.nav-icon:hover{background:#ffbc10 !important;border-color:#ffbc10 !important;color:#1a1a1a !important}
 /* Feedback modal */
 .feedback-modal{display:none}
 .feedback-modal.open{display:block;position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.55);overflow:auto;padding:24px}
