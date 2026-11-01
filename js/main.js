@@ -71,27 +71,6 @@
   const nav = document.getElementById('nav');
   const menuBtn = document.getElementById('menuBtn');
   const navLinks = document.getElementById('navLinks');
-  const themeToggle = document.getElementById('themeToggle');
-  const root = document.documentElement;
-
-  const saved = localStorage.getItem('theme');
-  if (saved) root.setAttribute('data-theme', saved);
-
-  function updateMeta(theme) {
-    const meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute('content', theme === 'dark' ? '#0b1020' : '#fafaf9');
-  }
-  updateMeta(saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
-
-  if (themeToggle) {
-    themeToggle.addEventListener('click', function () {
-      const cur = root.getAttribute('data-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-      const next = cur === 'dark' ? 'light' : 'dark';
-      root.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
-      updateMeta(next);
-    });
-  }
 
   menuBtn.addEventListener('click', function () { navLinks.classList.toggle('open'); });
   navLinks.querySelectorAll('a').forEach(function (a) {
