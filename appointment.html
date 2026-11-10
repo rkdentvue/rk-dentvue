@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#00ADB5">
+<meta name="theme-color" content="#0b1f55">
 <link rel="icon" href="assets/logo.jpg">
 <title>Appointment — RK Dentvue</title>
 <meta name="description" content="Book an appointment at RK Dentvue Centres — OPG, CBCT, Cephalometry across Hindupur, Dharmavaram and Bengaluru.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=15">
+<link rel="stylesheet" href="css/style.css?v=30">
 </head>
 <body>
 <nav class="nav" id="nav">
@@ -19,7 +19,6 @@
       <img src="assets/logo.jpg" alt="RK Dentvue logo" class="brand-logo">
       <div>
         <div class="brand-name"><span class="rk">RK</span> <span class="dv">Dentvue</span></div>
-        <div class="brand-sub">Advanced Dental Radiology</div>
       </div>
     </a>
     <div class="nav-links" id="navLinks">
@@ -56,7 +55,7 @@
         <span class="eyebrow">Request a booking</span>
         <h3 style="margin-bottom:6px">Tell us a little about you</h3>
         
-        <form class="form-grid" onsubmit="handleAppointment(event)">
+        <form class="form-grid" id="apptForm" onsubmit="handleAppointment(event)">
           <div class="field">
             <label for="appt-name">Full name <span class="req">*</span></label>
             <input class="input" id="appt-name" type="text" placeholder="Your name" required>
@@ -70,31 +69,36 @@
             <div class="centre-grid">
               <label class="centre-option"><input type="radio" name="centre" value="Hindupur" required><strong>Hindupur</strong><span>OPG · CBCT</span></label>
               <label class="centre-option"><input type="radio" name="centre" value="Dharmavaram"><strong>Dharmavaram</strong><span>OPG</span></label>
-              <label class="centre-option"><input type="radio" name="centre" value="Bengaluru (Kothanur)"><strong>Bengaluru</strong><span>Kothanur · Full suite</span></label>
+              <label class="centre-option"><input type="radio" name="centre" value="Bengaluru (Kothanur)"><strong>Bengaluru</strong><span data-bengaluru-opening>Kothanur · Opens 22 Nov</span></label>
             </div>
           </div>
           <div class="field">
-            <label for="appt-scan">Scan type</label>
-            <select class="input" id="appt-scan">
-              <option value="">Select scan type</option>
-              <option>OPG</option>
-              <option>TMJ</option>
-              <option>Sinus view</option>
-              <option>TMJ 3D</option>
-              <option>CBCT</option>
-              <option>PNS/Sinus view</option>
-              <option>PA cephalogram</option>
-              <option>Lateral cephalogram</option>
-              <option>Hand wrist</option>
-              <option>Other</option>
-            </select>
+            <label for="appt-2d">2D scan</label>
+            <select class="input" id="appt-2d"></select>
           </div>
           <div class="field">
-            <label for="appt-msg">Message</label>
-            <textarea class="input" id="appt-msg" placeholder="Preferred date/time, referral notes, or any questions." rows="4"></textarea>
+            <label for="appt-3d">3D scan (CBCT)</label>
+            <select class="input" id="appt-3d"></select>
+          </div>
+          <p class="muted" id="appt-scan-hint" style="font-size:.85rem;margin:-8px 0 16px"></p>
+          <div class="field">
+            <label for="appt-date">Preferred date</label>
+            <input class="input" id="appt-date" type="date">
+          </div>
+          <div class="field">
+            <label for="appt-time">Preferred time</label>
+            <select class="input" id="appt-time"></select>
+          </div>
+          <div class="field">
+            <label for="appt-doctor">Referring doctor name <span class="muted">(optional)</span></label>
+            <input class="input" id="appt-doctor" type="text" placeholder="Dr. name and clinic, if referred by a dentist">
+          </div>
+          <div class="field">
+            <label for="appt-msg">Notes <span class="muted">(optional)</span></label>
+            <textarea class="input" id="appt-msg" placeholder="Tooth numbers, reason for scan, or anything we should know." rows="4"></textarea>
           </div>
           <button type="submit" class="btn btn-primary" style="width:100%">Book via WhatsApp</button>
-          <p id="apptMsg" style="margin-top:12px;color:var(--success);font-weight:600;display:none">Thanks! We'll confirm your booking shortly.</p>
+          <p id="apptMsg" role="status" aria-live="polite" style="margin-top:12px;color:var(--success);font-weight:600;display:none"></p>
         </form>
       </div>
       <div>
@@ -149,6 +153,6 @@
   <span class="whatsapp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg></span>
   <span class="whatsapp-text">WhatsApp Us</span>
 </a>
-<script src="js/main.js"></script>
+<script src="js/main.js?v=4"></script>
 </body>
 </html>

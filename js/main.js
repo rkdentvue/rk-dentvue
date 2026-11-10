@@ -43,6 +43,8 @@
     go(0);
   })();
 
+  const BENGALURU_OPENING_DATE = '2026-11-22';
+
   // Open / Closed status (IST, Mon-Sat 9-21)
   function updateStatus() {
     const els = document.querySelectorAll('[data-status]');
@@ -51,18 +53,19 @@
     const day = ist.getDay();
     const hour = ist.getHours();
     const open = (day >= 1 && day <= 6) && (hour >= 9 && hour < 21);
-  // Scroll reveal
-  const revealEls = document.querySelectorAll('section, .card, .trust-item, .process-step');
-  revealEls.forEach(function (el) { el.classList.add('reveal'); });
-  const ro = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
-      if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); }
-    });
-  }, { threshold: 0.12 });
-  revealEls.forEach(function (el) { ro.observe(el); });
+    const istDate = [ist.getFullYear(), String(ist.getMonth() + 1).padStart(2, '0'), String(ist.getDate()).padStart(2, '0')].join('-');
+    const bengaluruOpeningLabel = document.querySelector('[data-bengaluru-opening]');
+    if (bengaluruOpeningLabel) {
+      bengaluruOpeningLabel.textContent = istDate < BENGALURU_OPENING_DATE
+        ? 'Kothanur · Opens 22 Nov'
+        : 'Kothanur · Full suite';
+    }
     els.forEach(function (el) {
-      el.className = 'status-badge ' + (open ? 'status-open' : 'status-closed');
-      el.innerHTML = '<span class="status-dot"></span> ' + (open ? 'Open Now' : 'Closed');
+      const openingSoon = el.dataset.status === 'bengaluru' && istDate < BENGALURU_OPENING_DATE;
+      const status = openingSoon ? 'opening' : (open ? 'open' : 'closed');
+      const label = openingSoon ? 'Opening soon · 22 Nov' : (open ? 'Open Now' : 'Closed');
+      el.className = 'status-badge status-' + status;
+      el.innerHTML = '<span class="status-dot"></span> ' + label;
     });
   }
   updateStatus();
@@ -84,29 +87,61 @@
   window.handleAppointment = function (ev) {
     ev.preventDefault();
     const f = ev.target;
-    const name = f.querySelector('input[type="text"]').value.trim();
-    const phone = f.querySelector('input[type="tel"]').value.trim();
+    const name = f.querySelector('#appt-name').value.trim();
+    const phone = f.querySelector('#appt-phone').value.trim();
     const centreEl = f.querySelector('input[name="centre"]:checked');
-    const centre = centreEl ? centreEl.value : (f.querySelector('select[name="centre"]') ? f.querySelector('select[name="centre"]').value : '');
-    const scanEl = f.querySelector('#appt-scan');
-    const scan = scanEl ? scanEl.value : '';
-    const msg = f.querySelector('textarea').value.trim();
+    const centre = centreEl ? centreEl.value : '';
+    const scan2d = f.querySelector('#appt-2d').value;
+    const scan3d = f.querySelector('#appt-3d').value;
+    const date = f.querySelector('#appt-date').value;
+    const time = f.querySelector('#appt-time').value;
+    const doctor = f.querySelector('#appt-doctor').value.trim();
+    const notes = f.querySelector('#appt-msg').value.trim();
+    const status = document.getElementById('apptMsg');
+    const phoneDigits = phone.replace(/\D/g, '');
+    const scans = [scan2d, scan3d].filter(Boolean);
+
+    let error = '';
+    if (phoneDigits.length < 10) error = 'Please enter a valid 10-digit mobile number.';
+    else if (!scans.length) error = 'Please choose a 2D scan, a 3D scan, or Other.';
+    else if (centre === 'Bengaluru (Kothanur)' && date && date < BENGALURU_OPENING_DATE) {
+      error = 'The Bengaluru (Kothanur) centre opens on 22 November 2026. Please choose that date or a later date.';
+    }
+    else if (centre === 'Bengaluru (Kothanur)' && date && new Date(date + 'T00:00:00').getDay() === 0) {
+      error = 'Our Kothanur centre is closed on Sundays. Please choose another date, or select Hindupur or Dharmavaram.';
+    }
+
+    if (error) {
+      status.textContent = error;
+      status.style.color = 'var(--danger)';
+      status.style.display = 'block';
+      return;
+    }
+
     const lines = [
       'Hello RK Dentvue, I would like to book an appointment.',
       '',
       'Name: ' + name,
       'Phone: ' + phone,
-      'Centre: ' + (centre || '-'),
-      'Scan: ' + (scan || '-')
+      'Centre: ' + centre,
+      'Scans: ' + scans.join('; ')
     ];
-    if (msg) lines.push('Message: ' + msg);
-    const text = lines.map(encodeURIComponent).join('%0A');
-    window.open('https://wa.me/916362766366?text=' + text, '_blank');
-    const m = document.getElementById('apptMsg');
-    if (m) { m.style.display = 'block'; setTimeout(function () { m.style.display = 'none'; }, 4000); }
-    f.reset();
-    if (window.updateScanOptions) window.updateScanOptions('');
+    if (date) {
+      const selectedDate = new Date(date + 'T00:00:00');
+      lines.push('Preferred date: ' + selectedDate.toLocaleDateString('en-IN', {
+        weekday: 'short', day: 'numeric', month: 'short', year: 'numeric'
+      }));
+    }
+    if (time) lines.push('Preferred time: ' + time);
+    if (doctor) lines.push('Referring doctor: ' + doctor);
+    if (notes) lines.push('Notes: ' + notes);
 
+    window.open('https://wa.me/916362766366?text=' + encodeURIComponent(lines.join('\n')), '_blank');
+    f.reset();
+    if (window.updateAppointmentOptions) window.updateAppointmentOptions();
+    status.textContent = "Thanks! WhatsApp opens in a new tab. Press send there to share your request with us.";
+    status.style.color = 'var(--success)';
+    status.style.display = 'block';
   };
   // Enquiry -> Web3Forms (no mail client)
   window.handleEnquiry = async function (ev) {
@@ -363,55 +398,105 @@
   };
 
 
-  // Appointment: scan options depend on selected centre
+  // Appointment: scan and time options depend on the selected centre.
   (function () {
-    const scan = document.getElementById('appt-scan');
-    if (!scan) return;
-    const radios = document.querySelectorAll('input[name="centre"]');
-    const scansByCentre = {
-      'Hindupur': ['OPG', 'TMJ', 'Sinus view', 'TMJ 3D', 'CBCT'],
-      'Dharmavaram': ['OPG', 'TMJ', 'Sinus view'],
-      'Bengaluru (Kothanur)': ['OPG', 'TMJ', 'PNS/Sinus view', 'PA cephalogram', 'Lateral cephalogram', 'Hand wrist', 'CBCT', 'TMJ 3D']
+    const form = document.getElementById('apptForm');
+    if (!form) return;
+
+    const scans2d = [
+      ['Digital OPG (panoramic)', 'hdb'],
+      ['TMJ, 2 views', 'hdb'],
+      ['TMJ, 4 views', 'hdb'],
+      ['PNS / sinus view', 'hdb'],
+      ['Lateral cephalogram', 'b'],
+      ['PA cephalogram', 'b'],
+      ['Reverse Towne’s view', 'b'],
+      ['Submento vertex', 'b'],
+      ['Hand wrist (bone age)', 'b'],
+      ['Other', 'hdb']
+    ];
+    const scans3d = [
+      ['CBCT, single tooth', 'hb'],
+      ['CBCT, single segment (2–3 teeth)', 'hb'],
+      ['CBCT, single quadrant', 'hb'],
+      ['CBCT, full maxilla', 'hb'],
+      ['CBCT, full mandible', 'hb'],
+      ['CBCT, full mouth / both jaws', 'hb'],
+      ['CBCT, TMJ closed', 'hb'],
+      ['CBCT, TMJ open', 'hb']
+    ];
+    const centreCodes = {
+      'Hindupur': 'h',
+      'Dharmavaram': 'd',
+      'Bengaluru (Kothanur)': 'b'
     };
-    function populate(centre) {
-      const prev = scan.value;
-      scan.innerHTML = '';
-      const placeholder = document.createElement('option');
-      placeholder.value = '';
-      placeholder.textContent = 'Select scan type';
-      scan.appendChild(placeholder);
-      let list = [];
-      if (centre) {
-        list = scansByCentre[centre] || [];
-      } else {
-        list = ['OPG', 'TMJ', 'Sinus view', 'TMJ 3D', 'CBCT', 'PNS/Sinus view', 'PA cephalogram', 'Lateral cephalogram', 'Hand wrist'];
+    const centreNotes = {
+      h: 'Hindupur offers OPG, TMJ, sinus and CBCT scans.',
+      d: 'Dharmavaram offers OPG, TMJ and sinus scans. CBCT is not available at this centre.',
+      b: 'The Kothanur centre in Bengaluru offers the full range of 2D and 3D scans.'
+    };
+    const hours = {
+      'Hindupur': [540, 1230],
+      'Dharmavaram': [540, 1230],
+      'Bengaluru (Kothanur)': [570, 1200]
+    };
+    const centreRadios = form.querySelectorAll('input[name="centre"]');
+    const centreHint = form.querySelector('#appt-scan-hint');
+    const dateInput = form.querySelector('#appt-date');
+
+    function populateScan(select, choices, placeholder, code) {
+      const previous = select.value;
+      const available = choices.filter(function (choice) { return !code || choice[1].includes(code); });
+      select.disabled = available.length === 0;
+      select.replaceChildren(new Option(placeholder, ''));
+      if (!available.length) {
+        select.add(new Option('Not available at this centre', ''));
+        return;
       }
-      list.forEach(function (s) {
-        const o = document.createElement('option');
-        o.value = s; o.textContent = s;
-        scan.appendChild(o);
-      });
-      const other = document.createElement('option');
-      other.value = 'Other'; other.textContent = 'Other';
-      scan.appendChild(other);
-      if (prev && (list.indexOf(prev) !== -1 || prev === 'Other')) {
-        scan.value = prev;
-      } else {
-        scan.value = '';
+      available.forEach(function (choice) { select.add(new Option(choice[0], choice[0])); });
+      if (available.some(function (choice) {
+        return choice[0] === previous && (!code || choice[1].includes(code));
+      })) {
+        select.value = previous;
       }
     }
-    radios.forEach(function (r) {
-      r.addEventListener('change', function () { populate(r.value); });
-      r.addEventListener('click', function () { setTimeout(function () { populate(r.value); }, 0); });
-    });
-    document.querySelectorAll('.centre-option').forEach(function (lbl) {
-      lbl.addEventListener('click', function () {
-        const r = lbl.querySelector('input[name="centre"]');
-        if (r) setTimeout(function () { populate(r.value); }, 0);
-      });
-    });
-    window.updateScanOptions = populate;
-    const checked = document.querySelector('input[name="centre"]:checked');
-    populate(checked ? checked.value : '');
-  })();
 
+    function formatTime(minutes) {
+      const hours24 = Math.floor(minutes / 60);
+      const minutesPart = minutes % 60;
+      const hours12 = hours24 % 12 || 12;
+      return hours12 + ':' + String(minutesPart).padStart(2, '0') + (hours24 >= 12 ? ' pm' : ' am');
+    }
+
+    function updateOptions() {
+      const selected = form.querySelector('input[name="centre"]:checked');
+      const centre = selected ? selected.value : '';
+      const code = centreCodes[centre] || '';
+      populateScan(form.querySelector('#appt-2d'), scans2d, 'Select a 2D scan', code);
+      populateScan(form.querySelector('#appt-3d'), scans3d, 'Select a 3D scan (CBCT)', code === 'h' || code === 'b' ? code : 'none');
+      centreHint.textContent = code ? centreNotes[code] : 'Choose a centre to see the available scans.';
+
+      const timeSelect = form.querySelector('#appt-time');
+      const previousTime = timeSelect.value;
+      timeSelect.replaceChildren(new Option('Any time', 'Any time'));
+      const window = hours[centre];
+      if (window) {
+        for (let minute = window[0]; minute <= window[1]; minute += 30) {
+          timeSelect.add(new Option(formatTime(minute), formatTime(minute)));
+        }
+      }
+      if (Array.from(timeSelect.options).some(function (option) { return option.value === previousTime; })) {
+        timeSelect.value = previousTime;
+      }
+    }
+
+    dateInput.min = new Date(Date.now() + 330 * 60 * 1000).toISOString().slice(0, 10);
+    centreRadios.forEach(function (radio) { radio.addEventListener('change', updateOptions); });
+    form.addEventListener('input', function () {
+      const status = document.getElementById('apptMsg');
+      status.textContent = '';
+      status.style.display = 'none';
+    });
+    window.updateAppointmentOptions = updateOptions;
+    updateOptions();
+  })();
