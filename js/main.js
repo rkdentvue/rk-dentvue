@@ -3,17 +3,15 @@
     if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const revealItems = document.querySelectorAll(
-      '.section > .container > .eyebrow, .section-head > h2, .section-head > .lead, .service-card, .imaging-tile, .process-step, .why-card, .branch, .trust-item, .appt-card'
+      '.section > .container > .eyebrow, .section-head > h2, .section-head > .lead, .service-card, .imaging-tile, .process-step, .why-card, .branch, .trust-item, .appt-card, .stat-item'
     );
     if (!revealItems.length) return;
 
-    const observer = new IntersectionObserver(function (entries, currentObserver) {
+    const observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add('is-visible');
-        currentObserver.unobserve(entry.target);
+        entry.target.classList.toggle('is-visible', entry.isIntersecting);
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -24px 0px' });
+    }, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
 
     revealItems.forEach(function (item) {
       const siblingIndex = Array.prototype.indexOf.call(item.parentElement.children, item);

@@ -284,11 +284,11 @@ p{margin:0 0 16px}
 .gallery img{width:100%;height:260px;object-fit:cover;border-radius:var(--r);transition:transform .3s}
 .gallery img:hover{transform:scale(1.02)}
 .stats-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(8px,2vw,16px);width:min(100%,480px);margin-top:0}
-.stat-item{position:relative;isolation:isolate;aspect-ratio:1;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:12px;border:1px solid transparent;border-radius:50%;background:linear-gradient(145deg,#fffefa,#f6f0df) padding-box,linear-gradient(145deg,rgba(var(--accent-rgb),.9),rgba(var(--primary-2-rgb),.58) 58%,rgba(var(--accent-rgb),.55)) border-box;text-align:center}
-.stat-item::before{content:"";position:absolute;inset:7px;z-index:-1;border:1px solid rgba(var(--primary-2-rgb),.2);border-radius:50%;pointer-events:none}
-.stat-item::after{content:"";position:absolute;top:17%;left:50%;width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px rgba(var(--accent-rgb),.13);transform:translateX(-50%)}
-.stat-item strong{font-family:var(--f-display);font-size:clamp(1.05rem,3.8vw,1.6rem);font-weight:800;letter-spacing:-.035em;line-height:1.1;color:var(--ink);white-space:nowrap}
-.stat-item span{max-width:10ch;margin-top:0;color:var(--primary-2);font-size:clamp(.72rem,2.7vw,.86rem);font-weight:700;line-height:1.25;text-align:center}
+.stat-item{--stat-accent:var(--accent-strong);--stat-wash:#fff8e6;aspect-ratio:1;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;padding:12px;border:1.5px solid var(--stat-accent);border-radius:50%;background:radial-gradient(circle at 32% 24%,#fff 0%,var(--stat-wash) 100%);text-align:center}
+.stat-item:nth-child(2){--stat-accent:var(--primary-2);--stat-wash:#e8f5f4}
+.stat-item:nth-child(3){--stat-accent:var(--primary);--stat-wash:#edf1fa}
+.stat-item strong{font-family:var(--f-display);font-size:clamp(1.05rem,3.8vw,1.6rem);font-weight:800;letter-spacing:-.035em;line-height:1.1;color:var(--stat-accent);white-space:nowrap}
+.stat-item span{max-width:10ch;margin-top:0;color:var(--ink);font-size:clamp(.72rem,2.7vw,.86rem);font-weight:650;line-height:1.25;text-align:center}
 @media (max-width:640px){.hero{padding:112px 0 52px}.hero-grid{gap:28px}.hero .img-carousel .track{height:clamp(220px,64vw,280px)}.hero-desc{font-size:1rem;margin-bottom:22px}.hero-cta{margin-bottom:14px}.stats-grid{gap:8px}}
 .imaging-section{background:var(--bg-2)}
 .imaging-section .section-head{margin-bottom:28px}
