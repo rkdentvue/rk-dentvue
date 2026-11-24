@@ -1,4 +1,28 @@
 
+  (function () {
+    if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const revealItems = document.querySelectorAll(
+      '.section > .container > .eyebrow, .section-head > h2, .section-head > .lead, .service-card, .imaging-tile, .process-step, .why-card, .branch, .trust-item, .appt-card'
+    );
+    if (!revealItems.length) return;
+
+    const observer = new IntersectionObserver(function (entries, currentObserver) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        currentObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -24px 0px' });
+
+    revealItems.forEach(function (item) {
+      const siblingIndex = Array.prototype.indexOf.call(item.parentElement.children, item);
+      item.style.setProperty('--reveal-delay', Math.min(siblingIndex, 3) * 90 + 'ms');
+      item.classList.add('scroll-reveal');
+      observer.observe(item);
+    });
+  })();
+
   // Image carousel (fade)
   (function () {
     const track = document.querySelector('.img-carousel .track');
@@ -43,8 +67,6 @@
     go(0);
   })();
 
-  const BENGALURU_OPENING_DATE = '2026-11-22';
-
   // Open / Closed status (IST, Mon-Sat 9-21)
   function updateStatus() {
     const els = document.querySelectorAll('[data-status]');
@@ -53,17 +75,10 @@
     const day = ist.getDay();
     const hour = ist.getHours();
     const open = (day >= 1 && day <= 6) && (hour >= 9 && hour < 21);
-    const istDate = [ist.getFullYear(), String(ist.getMonth() + 1).padStart(2, '0'), String(ist.getDate()).padStart(2, '0')].join('-');
-    const bengaluruOpeningLabel = document.querySelector('[data-bengaluru-opening]');
-    if (bengaluruOpeningLabel) {
-      bengaluruOpeningLabel.textContent = istDate < BENGALURU_OPENING_DATE
-        ? 'Kothanur · Opens 22 Nov'
-        : 'Kothanur · Full suite';
-    }
     els.forEach(function (el) {
-      const openingSoon = el.dataset.status === 'bengaluru' && istDate < BENGALURU_OPENING_DATE;
+      const openingSoon = el.dataset.status === 'bengaluru';
       const status = openingSoon ? 'opening' : (open ? 'open' : 'closed');
-      const label = openingSoon ? 'Opening soon · 22 Nov' : (open ? 'Open Now' : 'Closed');
+      const label = openingSoon ? 'Opening soon' : (open ? 'Open Now' : 'Closed');
       el.className = 'status-badge status-' + status;
       el.innerHTML = '<span class="status-dot"></span> ' + label;
     });
@@ -104,9 +119,6 @@
     let error = '';
     if (phoneDigits.length < 10) error = 'Please enter a valid 10-digit mobile number.';
     else if (!scans.length) error = 'Please choose a 2D scan, a 3D scan, or Other.';
-    else if (centre === 'Bengaluru (Kothanur)' && date && date < BENGALURU_OPENING_DATE) {
-      error = 'The Bengaluru (Kothanur) centre opens on 22 November 2026. Please choose that date or a later date.';
-    }
     else if (centre === 'Bengaluru (Kothanur)' && date && new Date(date + 'T00:00:00').getDay() === 0) {
       error = 'Our Kothanur centre is closed on Sundays. Please choose another date, or select Hindupur or Dharmavaram.';
     }
